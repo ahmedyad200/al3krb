@@ -14228,7 +14228,7 @@ local Text = 'عذرا هذا '..Rutba(result.sender_user_id_,msg.chat_id_)..'\n
 send(msg.chat_id_, msg.id_, Text)
 return false
 end
-local Text = 'شوف هتعمل في اي ابنلكلب د '..result.sender_user_id_
+local Text = 'ماذا تريد ان تفعل عزيزي '..Rutba(msg.sender_user_id_,msg.chat_id_)
 keyboard = {} 
 keyboard.inline_keyboard = {
 {

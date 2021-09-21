@@ -4461,8 +4461,7 @@ return false
 end
 database:sadd(bot_id..'GBan:User', result.sender_user_id_)
 chat_kick(result.chat_id_, result.sender_user_id_)
-tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},
-function(arg,data) 
+tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
 usertext = '\n ☭ العضو ← ['..data.first_name_..'](t.me/'..(data.username_ or 'DV_POWER1')..')'
 status  = '\n ☭ تم حظره عام من جروبات'
 send(msg.chat_id_, msg.id_, usertext..status)
@@ -14223,6 +14222,7 @@ send(msg.chat_id_, msg.id_,'☭لا تستطيع استخدام البوت \n �
 end
 return false
 end
+function start_function(extra, result, success)
 local Text =[[
 شوف هتعمل في اي ابنلكلب د
 ]]
@@ -14241,7 +14241,7 @@ keyboard.inline_keyboard = {
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 return false
-end
+end end
 if text == 'الاوامر' then
 if not Mod(msg) then
 send(msg.chat_id_, msg.id_,'☭هاذا الامر خاص بالادمنيه\n☭ارسل {⑩} لعرض اوامر الاعضاء')

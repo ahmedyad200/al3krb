@@ -3444,6 +3444,65 @@ https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. 
 end
 --------------------------------------------------------------------------------------------------------------
 if Chat_Type == 'GroupBot' and ChekAdd(msg.chat_id_) == true then
+if text == 'تحكم' and msg.reply_to_message_id_ and Mod(msg) then
+if AddChannel(msg.sender_user_id_) == false then
+local XXx_cLASsIC_xXX = database:get(bot_id..'text:ch:user')
+if XXx_cLASsIC_xXX then
+send(msg.chat_id_, msg.id_,'['..XXx_cLASsIC_xXX..']')
+else
+send(msg.chat_id_, msg.id_,'☭لا تستطيع استخدام البوت \n ☭يرجى الاشتراك بالقناه اولا \n ☭اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+function start_function(extra, result, success)
+if Can_or_NotCan(result.sender_user_id_, msg.chat_id_) == true then
+local Text = 'عذرا هذا '..Rutba(result.sender_user_id_,msg.chat_id_)..'\nلا يمكنني التحكم بة'
+send(msg.chat_id_, msg.id_, Text)
+return false
+end
+local Text = 'ماذا تريد ان تفعل عزيزي '..Rutba(msg.sender_user_id_,msg.chat_id_)
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = 'الغاء كتم', callback_data="/t7km1 "..result.sender_user_id_},{text = 'كتم', callback_data="/t7km2 "..result.sender_user_id_},
+},
+{
+{text = 'الغاء حظر', callback_data="/t7km3 "..result.sender_user_id_},{text = 'حظر', callback_data="/t7km4 "..result.sender_user_id_},
+},
+{
+{text = 'الغاء تقيد', callback_data="/t7km5 "..result.sender_user_id_},{text = 'تقيد', callback_data="/t7km6 "..result.sender_user_id_},
+},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
+return false
+end
+if text == 'تحكم الرتبه' and msg.reply_to_message_id_ and Mod(msg) then
+if AddChannel(msg.sender_user_id_) == false then
+local XXx_cLASsIC_xXX = database:get(bot_id..'text:ch:user')
+if XXx_cLASsIC_xXX then
+send(msg.chat_id_, msg.id_,'['..XXx_cLASsIC_xXX..']')
+else
+send(msg.chat_id_, msg.id_,'☭لا تستطيع استخدام البوت \n ☭يرجى الاشتراك بالقناه اولا \n ☭اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+function start_function(extra, result, success)
+local Text = 'ماذا تريد ان تفعل عزيزي '..Rutba(msg.sender_user_id_,msg.chat_id_)
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = 'تنزيل رتبه', callback_data="/t7kmrtb1 "..result.sender_user_id_},{text = 'رفع رتبه', callback_data="/t7kmrtb2 "..result.sender_user_id_},
+},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
+return false
+end
 if text == 'رفع نسخه الاحتياطيه' and sudo2(msg) then   
 if AddChannel(msg.sender_user_id_) == false then
 local XXx_cLASsIC_xXX = database:get(bot_id..'text:ch:user')
@@ -14212,41 +14271,6 @@ database:set(bot_id..'help10'..msg.sender_user_id_,'true')
 return false 
 end
 ---------------------- الاوامر الجديدة
-if text == 'تحكم' and msg.reply_to_message_id_ and Mod(msg) then
-if AddChannel(msg.sender_user_id_) == false then
-local XXx_cLASsIC_xXX = database:get(bot_id..'text:ch:user')
-if XXx_cLASsIC_xXX then
-send(msg.chat_id_, msg.id_,'['..XXx_cLASsIC_xXX..']')
-else
-send(msg.chat_id_, msg.id_,'☭لا تستطيع استخدام البوت \n ☭يرجى الاشتراك بالقناه اولا \n ☭اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-function start_function(extra, result, success)
-if Can_or_NotCan(result.sender_user_id_, msg.chat_id_) == true then
-local Text = 'عذرا هذا '..Rutba(result.sender_user_id_,msg.chat_id_)..'\nلا يمكنني التحكم بة'
-send(msg.chat_id_, msg.id_, Text)
-return false
-end
-local Text = 'ماذا تريد ان تفعل عزيزي '..Rutba(msg.sender_user_id_,msg.chat_id_)
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = 'الغاء كتم', callback_data="/t7km1 "..result.sender_user_id_},{text = 'كتم', callback_data="/t7km2 "..result.sender_user_id_},
-},
-{
-{text = 'الغاء حظر', callback_data="/t7km3 "..result.sender_user_id_},{text = 'حظر', callback_data="/t7km4 "..result.sender_user_id_},
-},
-{
-{text = 'الغاء تقيد', callback_data="/t7km5 "..result.sender_user_id_},{text = 'تقيد', callback_data="/t7km6 "..result.sender_user_id_},
-},
-}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-end
-tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
-return false
-end
 if text == 'الاوامر' then
 if not Mod(msg) then
 send(msg.chat_id_, msg.id_,'☭هاذا الامر خاص بالادمنيه\n☭ارسل {⑩} لعرض اوامر الاعضاء')
@@ -14601,6 +14625,93 @@ local text = 'تم تقيد العضو'
 https.request("https://api.telegram.org/bot"..token.."/restrictChatMember?chat_id="..Chat_id.."&user_id="..userid.."&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(text)..'&message_id='..msg_idd) 
 end
+
+
+
+
+
+if Text and Text:match("^/t7kmrtb1 (.*)$") then
+local userid = Text:match("^/t7kmrtb1 (.*)$")
+if not Mod(data) then
+local notText = '✘ يجب ان تكون ادمن للضغط هنا'
+https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
+return false
+end
+local Teext = 'رتبته الان ('..Rutba(userid,Chat_id)..') ماذا ستفعل به 🙂'
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = 'تنزيل مطور ثانوي', callback_data="/t7kmrtb1_1 "..userid},
+},
+{
+{text = 'تنزيل مطور', callback_data="/t7kmrtb1_2 "..userid},
+},
+{
+{text = 'تنزيل مالك', callback_data="/t7kmrtb1_3 "..userid},
+},
+{
+{text = 'تنزيل منشئ اساسي', callback_data="/t7kmrtb1_4 "..userid},
+},
+{
+{text = 'تنزيل منشئ', callback_data="/t7kmrtb1_5 "..userid},
+},
+{
+{text = 'تنزيل مدير', callback_data="/t7kmrtb1_6 "..userid},
+},
+{
+{text = 'تنزيل ادمن', callback_data="/t7kmrtb1_7 "..userid},
+},
+{
+{text = 'تنزيل مميز', callback_data="/t7kmrtb1_8 "..userid},
+},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
+
+if Text and Text:match("^/t7kmrtb2 (.*)$") then
+local userid = Text:match("^/t7kmrtb2 (.*)$")
+if not Mod(data) then
+local notText = '✘ يجب ان تكون ادمن للضغط هنا'
+https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
+return false
+end
+local Teext = 'رتبته الان ('..Rutba(userid,Chat_id)..') ماذا ستفعل به 🙂'
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = 'رفع مطور ثانوي', callback_data="/t7kmrtb2_1 "..userid},
+},
+{
+{text = 'رفع مطور', callback_data="/t7kmrtb2_2 "..userid},
+},
+{
+{text = 'رفع مالك', callback_data="/t7kmrtb2_3 "..userid},
+},
+{
+{text = 'رفع منشئ اساسي', callback_data="/t7kmrtb2_4 "..userid},
+},
+{
+{text = 'رفع منشئ', callback_data="/t7kmrtb2_5 "..userid},
+},
+{
+{text = 'رفع مدير', callback_data="/t7kmrtb2_6 "..userid},
+},
+{
+{text = 'رفع ادمن', callback_data="/t7kmrtb2_7 "..userid},
+},
+{
+{text = 'رفع مميز', callback_data="/t7kmrtb2_8 "..userid},
+},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
+
+
+
+
+
+
+
 if Text == '/help1' then
 if not Mod(data) then
 local notText = '✘ عذرا الاوامر هذه لا تخصك'

@@ -14223,9 +14223,7 @@ end
 return false
 end
 function start_function(extra, result, success)
-local Text =[[
-شوف هتعمل في اي ابنلكلب د
-]]
+local Text = 'شوف هتعمل في اي ابنلكلب د '..result.sender_user_id_
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
@@ -14532,7 +14530,6 @@ local text = 'تم مغادره المجموعه بنجاح'
 https.request("https://api.telegram.org/bot"..token..'/LeaveChat?chat_id='..chatid) 
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(text)..'&message_id='..msg_idd) 
 end
-
 if Text and Text:match("^/t7km1 (.*)$") then
 local userid = Text:match("^/t7km1 (.*)$")
 if not Mod(data) then
@@ -14544,7 +14541,6 @@ local text = 'تم الغاء كتم العضو'
 database:srem(bot_id..'Muted:User'..Chat_id, userid)
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(text)..'&message_id='..msg_idd) 
 end
-
 if Text and Text:match("^/t7km2 (.*)$") then
 local userid = Text:match("^/t7km2 (.*)$")
 if not Mod(data) then
@@ -14552,16 +14548,14 @@ local notText = 'يجب ان تكون ادمن لاستخدام هذا الام�
 https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
 return false
 end
-if Can_or_NotCan(userid, Chat_id) ~= true then
+if Can_or_NotCan(userid, Chat_id) == true then
+local text = 'لا يمكنك كتم '..Rutba(userid,Chat_id)
+else
 local text = 'تم كتم العضو'
 database:sadd(bot_id..'Muted:User'..Chat_id, userid)
-else
-local text = 'لا يمكنك كتم '..Rutba(userid,Chat_id)
 end
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(text)..'&message_id='..msg_idd) 
 end
-
-
 if Text and Text:match("^/t7km3 (.*)$") then
 local userid = Text:match("^/t7km3 (.*)$")
 if not Mod(data) then
@@ -14573,7 +14567,6 @@ local text = 'تم الغاء حظر العضو'
 tdcli_function ({ ID = "ChangeChatMemberStatus", chat_id_ = Chat_id, user_id_ = userid, status_ = { ID = "ChatMemberStatusLeft" },},function(arg,ban) end,nil)
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(text)..'&message_id='..msg_idd) 
 end
-
 if Text and Text:match("^/t7km4 (.*)$") then
 local userid = Text:match("^/t7km4 (.*)$")
 if not Mod(data) then
@@ -14581,15 +14574,14 @@ local notText = 'يجب ان تكون ادمن لاستخدام هذا الام�
 https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
 return false
 end
-if Can_or_NotCan(userid, Chat_id) ~= true then
+if Can_or_NotCan(userid, Chat_id) == true then
+local text = 'لا يمكنك حظر '..Rutba(userid,Chat_id)
+else
 local text = 'تم حظر العضو'
 tdcli_function ({ ID = "ChangeChatMemberStatus", chat_id_ = Chat_id, user_id_ = userid, status_ = { ID = "ChatMemberStatusKicked" },},function(arg,data) end,nil)
-else
-local text = 'لا يمكنك حظر '..Rutba(userid,Chat_id)
 end
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(text)..'&message_id='..msg_idd) 
 end
-
 if Text and Text:match("^/t7km5 (.*)$") then
 local userid = Text:match("^/t7km5 (.*)$")
 if not Mod(data) then
@@ -14601,7 +14593,6 @@ local text = 'تم الغاء تقيد العضو'
 https.request("https://api.telegram.org/bot"..token.."/restrictChatMember?chat_id="..Chat_id.."&user_id="..userid.."&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(text)..'&message_id='..msg_idd) 
 end
-
 if Text and Text:match("^/t7km6 (.*)$") then
 local userid = Text:match("^/t7km6 (.*)$")
 if not Mod(data) then
@@ -14609,25 +14600,14 @@ local notText = 'يجب ان تكون ادمن لاستخدام هذا الام�
 https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
 return false
 end
-if Can_or_NotCan(userid, Chat_id) ~= true then
+if Can_or_NotCan(userid, Chat_id) == true then
+local text = 'لا يمكنك تقيد '..Rutba(userid,Chat_id)
+else
 local text = 'تم تقيد العضو'
 https.request("https://api.telegram.org/bot"..token.."/restrictChatMember?chat_id="..Chat_id.."&user_id="..userid.."&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")
-else
-local text = 'لا يمكنك تقيد '..Rutba(userid,Chat_id)
 end
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(text)..'&message_id='..msg_idd) 
 end
-
-
-
-
-
-
-
-
-
-
-
 if Text == '/help1' then
 if not Mod(data) then
 local notText = '✘ عذرا الاوامر هذه لا تخصك'

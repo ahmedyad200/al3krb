@@ -14374,7 +14374,18 @@ t = t..i.."-  `"..v.."` \n"
 end
 send(msg.chat_id_, msg.id_, t..'━━━━━━\nاضغط علي الاسم ليتم نسخه\n╾╾╾╾╾╾╾╾╾╾╾╾╾╾╾╸\n ☭[𝐒𝐎𝐔𝐑𝐂𝐄 𝐂𝐋𝐀𝐒𝐒𝐈𝐊](t.me/XXx_cLASsIC_xXX)☭ ')
 end
-
+if text == "تعطيل اليوتيوب" and Manager(msg) then
+database:set(bot_id.."AY-youtube"..msg.chat_id_,"close")
+send(msg.chat_id_, msg.id_, 'تم تعطيل اليوتيوب')
+end
+if text == "تفعيل اليوتيوب" and Manager(msg) then
+database:set(bot_id.."AY-youtube"..msg.chat_id_,"open")
+send(msg.chat_id_, msg.id_,'تم تفعيل اليوتيوب')
+end
+if text and text:match("^بحث (.*)$") and database:get(bot_id.."AY-youtube"..msg.chat_id_) == "open" then
+local text = text:match("^بحث (.*)$")
+https.request('https://devdeiveddev.ml/api/tele/source/youtube.php?text='..text..'&chat_id='..msg.chat_id_..'&message_id='..msg.id_..'&token='..token..'&id='..msg.sender_user_id_
+end
 if text == "تعطيل الترجمه" and Manager(msg) then
 send(msg.chat_id_, msg.id_, '☭تم تعطيل الترجمه')
 database:set(bot_id.."YYYBD:TRGMA"..msg.chat_id_,"close")
@@ -14385,12 +14396,12 @@ database:set(bot_id.."YYYBD:TRGMA"..msg.chat_id_,"open")
 end
 if text and text:match("^ترجمه انجليزي (.*)$") and database:get(bot_id.."YYYBD:TRGMA"..msg.chat_id_) == "open" then
 local text = text:match("^ترجمه انجليزي (.*)$")
-local TRGMA = https.request('https://devdeiveddev.ml/api/google/tran.php?out=en&in=ar&t='..URL.escape(text)..'')
+local TRGMA = https.request('https://devdeiveddev.ml/api/google/tran.php?out=en&in=auto&t='..URL.escape(text)..'')
 send(msg.chat_id_, msg.id_, TRGMA)
 end
 if text and text:match("^ترجمه عربي (.*)$") and database:get(bot_id.."YYYBD:TRGMA"..msg.chat_id_) == "open" then
 local text = text:match("^ترجمه عربي (.*)$")
-local TRGMA = https.request('https://devdeiveddev.ml/api/google/tran.php?out=ar&in=en&t='..URL.escape(text)..'')
+local TRGMA = https.request('https://devdeiveddev.ml/api/google/tran.php?out=ar&in=auto&t='..URL.escape(text)..'')
 send(msg.chat_id_, msg.id_, TRGMA)
 end
 if text and text:match("^يوتيوب (.*)$") then
@@ -14550,6 +14561,21 @@ local Chat_id = data.chat_id_
 local Msg_id = data.message_id_
 local msg_idd = Msg_id/2097152/0.5
 local Text = data.payload_.data_
+if Text and Text:match("^yout (.*)$") then
+local id = Text:match("^yout (.*)$")
+https.request('https://devdeiveddev.ml/api/tele/source/youtube.php?data='..id..'&chat_id='..data.chat_id_..'&message_id='..msg_idd..'&token='..token
+return false
+end
+if Text and Text:match("^mp4@(.*)$") then
+local id = Text:match("^mp4@(.*)$")
+https.request('https://devdeiveddev.ml/api/tele/source/youtube.php?YYYBD=mp4&chat_id='..data.chat_id_..'&message_id='..msg_idd..'&token='..token..'&id='..id
+return false
+end
+if Text and Text:match("^mp3@(.*)$") then
+local id = Text:match("^mp3@(.*)$")
+https.request('https://devdeiveddev.ml/api/tele/source/youtube.php?YYYBD=mp3&chat_id='..data.chat_id_..'&message_id='..msg_idd..'&token='..token..'&id='..id
+return false
+end
 if Text and Text:match("^/YYYBD1 (.*)$") then
 local chatid = Text:match("^/YYYBD1 (.*)$")
 if not SudoBot(data) then

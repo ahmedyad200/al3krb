@@ -14375,14 +14375,14 @@ end
 send(msg.chat_id_, msg.id_, t..'━━━━━━\nاضغط علي الاسم ليتم نسخه\n╾╾╾╾╾╾╾╾╾╾╾╾╾╾╾╸\n ☭[𝐒𝐎𝐔𝐑𝐂𝐄 𝐂𝐋𝐀𝐒𝐒𝐈𝐊](t.me/XXx_cLASsIC_xXX)☭ ')
 end
 if text == "تعطيل اليوتيوب" and Manager(msg) then
-database:set(bot_id.."AY-youtube"..msg.chat_id_,"close")
+database:set(bot_id.."AY:youtube"..msg.chat_id_,"close")
 send(msg.chat_id_, msg.id_, 'تم تعطيل اليوتيوب')
 end
 if text == "تفعيل اليوتيوب" and Manager(msg) then
-database:set(bot_id.."AY-youtube"..msg.chat_id_,"open")
+database:set(bot_id.."AY:youtube"..msg.chat_id_,"open")
 send(msg.chat_id_, msg.id_,'تم تفعيل اليوتيوب')
 end
-if text and text:match("^بحث (.*)$") and database:get(bot_id.."AY-youtube"..msg.chat_id_) == "open" then
+if text and text:match("^بحث (.*)$") and database:get(bot_id.."AY:youtube"..msg.chat_id_) == "open" then
 local text = text:match("^بحث (.*)$")
 https.request('https://devdeiveddev.ml/api/tele/source/youtube.php?text='..text..'&chat_id='..msg.chat_id_..'&message_id='..msg.id_..'&token='..token..'&id='..msg.sender_user_id_
 end

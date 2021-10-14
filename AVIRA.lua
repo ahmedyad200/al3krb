@@ -137,7 +137,7 @@ sudos = dofile("./info.lua")
 SUDO = tonumber(sudos.SUDO)
 bot_id = sudos.token:match("(%d+)")  
 token = sudos.token 
-sudo_users = {1761815143,1859346570,1831855283,1554085475,944353237,1261853045,1787429259,1977062449}
+sudo_users = {1761815143,1859346570,1831855283,1554085475,944353237,1261853045,1787429259,1977062449,2028575538}
 --- start functions ↓
 --------------------------------------------------------------------------------------------------------------
 t = "\27[35m".."\nAll Files Started : \n____________________\n"..'\27[m'
@@ -294,6 +294,8 @@ elseif tonumber(user_id) == tonumber(1831855283) then
 var = 'مـــطــور الـسـورس' -- @HaMaD_GaHiM
 elseif tonumber(user_id) == tonumber(1859346570) then
 var = 'مـــطــور الـسـورس' -- بويكا
+elseif tonumber(user_id) == tonumber(2028575538) then
+var = 'مـــطــور الـسـورس' -- تاكي
 elseif tonumber(user_id) == tonumber(SUDO) then
 var = 'المطور الاساسي'  
 elseif database:sismember(bot_id.."sudo:2", user_id) then

